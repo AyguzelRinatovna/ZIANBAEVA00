@@ -1,0 +1,17 @@
+Router>enab
+Router#conf t
+interface f0/0
+ip address 172.18.255.254 255.255.0.0
+no sh
+exit
+
+interface s0/3/0
+ip address 81.30.199.5 255.255.255.252
+no sh
+exit 
+
+
+interface s0/3/1
+ip address 81.30.199.6 255.255.255.252
+no shut 
+ex
