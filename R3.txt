@@ -1,45 +1,22 @@
-Router>enab
-Router#conf t
-Enter configuration commands, one per line.  End with CNTL/Z.
-Router(config)#hostname R2
-R2(config)#interface f0/0
-R2(config-if)#ip add 172.19.255.254 255.255.0.0
-R2(config-if)#no shut
+enab
+conf t
+hostname R3
 
-R2(config-if)#
-%LINK-5-CHANGED: Interface FastEthernet0/0, changed state to up
+interface f0/0
+ip address 172.19.0.1 255.255.0.0
+no sh
+exit
 
-%LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/0, changed state to up
-%IP-4-DUPADDR: Duplicate address 172.19.255.254 on FastEthernet0/0, sourced by 000B.BE32.98AA
+interface s0/3/0
+ip address 195.65.24.202 255.255.255.252
+no sh
+exit 
 
-R2(config-if)#exit
-R2(config)#
-R2(config)#no shut
-               ^
-% Invalid input detected at '^' marker.
-	
-R2(config)#interface s0/0/0
-%Invalid interface type and number
-R2(config)#interface s0/3/0
-R2(config-if)#ip add 195.65.24.202 255.255.255.252
-R2(config-if)#no shut
 
-%LINK-5-CHANGED: Interface Serial0/3/0, changed state to down
-R2(config-if)#exit
-R2(config)#interface s0/3/1
-R2(config-if)#ip add 195.65.24.65 255.255.255.254
-Bad mask /31 for address 195.65.24.65
-R2(config-if)#ip add 195.65.24.65 255.255.255.252
-R2(config-if)#no shut
+interface s0/3/1
+ip address 195.65.24.66 255.255.255.252
+no shut 
+ex
 
-R2(config-if)#
-%LINK-5-CHANGED: Interface Serial0/3/1, changed state to up
-
-R2(config-if)#exit
-R2(config)#
-%LINEPROTO-5-UPDOWN: Line protocol on Interface Serial0/3/1, changed state to up
-
-R2(config)#interface s0/3/0
-R2(config-if)#ip add 195.65.24.202 255.255.255.252
-R2(config-if)#no shut
-R2(config-if)#exit
+ip route 172.17.0.0 255.255.0.0 s0/3/1
+ip route 172.18.0.0 255.255.0.0 s0/3/0
