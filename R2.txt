@@ -1,12 +1,12 @@
-Router>enab
-Router#conf t
+enab
+conf t
 interface f0/0
-ip address 172.18.255.254 255.255.0.0
+ip address 172.18.0.1 255.255.0.0
 no sh
 exit
 
 interface s0/3/0
-ip address 81.30.199.5 255.255.255.252
+ip address 195.65.24.65 255.255.255.252
 no sh
 exit 
 
@@ -15,3 +15,6 @@ interface s0/3/1
 ip address 81.30.199.6 255.255.255.252
 no shut 
 ex
+
+ip route 172.17.0.0 255.255.0.0 s0/3/0
+ip route 172.19.0.0 255.255.0.0 s0/3/1
